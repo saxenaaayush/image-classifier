@@ -10,6 +10,8 @@ def build_model(backbone="efficientnet_b4", pretrained=False):
             nn.Dropout(0.2),
             nn.Linear(in_feats, 1)
         )
+    else:
+        raise ValueError(f"Unsupported backbone: {backbone}")
     return model
 
 def load_model(weights_path, device):
