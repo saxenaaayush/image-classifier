@@ -1,32 +1,73 @@
-# image-classifier
+# Cataract Detection Using EfficientNet + FastAPI
 
-A simple project for building and deploying image classification models.
+A deep learning-based binary classifier that detects cataracts from retinal images with high clinical precision. Built using PyTorch and deployed with FastAPI for seamless image inference.
 
-## Features
+---
 
-- Supports training with custom datasets
-- Easily extendable for multiple image classes
-- Example scripts for data preprocessing, model training, and evaluation
+## Project Structure
 
-## Getting Started
+image-classifier/
+├── assets/ # Trained model weights (.pth)
+├── data/ # (Optional) Local data (from Kaggle)
+├── deployment/
+│ ├── main.py # FastAPI app entry point
+│ ├── model.py # Model architecture and loader
+│ ├── utils.py # Image preprocessing functions
+├── notebooks/
+│ ├── 01_exploration.ipynb # Dataset exploration and CLAHE/Gamma tests
+│ ├── 02_train_final.ipynb # Final EfficientNet training + evaluation
+├── requirements.txt # Project dependencies
+├── README.md # 
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/image-classifier.git
-   cd image-classifier
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Add your images to the `data/` folder and update the training script as needed.
+---
 
-## Usage
+##  Setup Instructions
+
+### 1. Clone the Repository
 
 ```bash
-python train.py --data data/ --epochs 10
-```
+git clone https://github.com/your-username/image-classifier.git
+cd image-classifier
 
-## License
+python -m venv venv
+source venv/bin/activate
 
-This project is licensed under the MIT License.
+pip install --upgrade pip
+pip install -r requirements.txt
+
+
+Dataset: Kaggle: Cataract Image Dataset
+
+kaggle datasets download -d nandanp6/cataract-image-dataset
+unzip cataract-image-dataset.zip -d data/
+
+
+data/
+└── raw/
+    └── processed_images/
+        ├── train/
+        │   ├── cataract/
+        │   └── normal/
+        └── test/
+            ├── cataract/
+            └── normal/
+
+DATA_ROOT = "data/raw/processed_images/"
+
+
+### Running the API
+1. Launch FastAPI server
+bash
+Copy
+Edit
+uvicorn deployment.main:app --reload
+2. Test the API
+Go to: http://127.0.0.1:8000/docs
+Upload an image via Swagger UI.
+
+Example Output
+json
+{
+  "prediction": "Cataract",
+  "probability": 0.9741
+}
