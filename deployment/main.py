@@ -2,11 +2,16 @@ from fastapi import FastAPI, File, UploadFile
 import torch
 from .model import load_model
 from .utils import preprocess_image
+from pathlib import Path
 
 app = FastAPI()
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-MODEL_PATH = "models/best_model_effnet.pth"
-model = load_model(MODEL_PATH, DEVICE)
+
+
+
+MODEL_PATH = Path(__file__).parent / "assets" / "best_model_effnet.pth"
+
+model = load_model(str(MODEL_PATH), DEVICE)
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
