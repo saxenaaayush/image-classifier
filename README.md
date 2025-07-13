@@ -57,10 +57,9 @@ DATA_ROOT = "data/raw/processed_images/"
 
 ### Running the API
 1. Launch FastAPI server
-bash
-Copy
-Edit
+
 uvicorn deployment.main:app --reload
+
 2. Test the API
 Go to: http://127.0.0.1:8000/docs
 Upload an image via Swagger UI.
