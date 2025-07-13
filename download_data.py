@@ -13,15 +13,14 @@ def download_and_extract():
     api = KaggleApi()
     api.authenticate()
 
-    print(f"Downloading {dataset_name}...")
+    # print(f"Downloading {dataset_name}...")
     api.dataset_download_files(dataset_name, path=output_dir, unzip=False)
 
-    print(f"Unzipping {zip_file}...")
     with zipfile.ZipFile(zip_file, "r") as zip_ref:
         zip_ref.extractall(extract_dir)
 
     os.remove(zip_file)
-    print(f"Done. Data extracted to: {extract_dir}")
+    # print(f"Extracted to: {extract_dir}")
 
 if __name__ == "__main__":
     download_and_extract()
