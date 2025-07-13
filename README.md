@@ -10,23 +10,41 @@ Built using PyTorch and deployed using FastAPI for seamless model inference.
 ## Project Structure
 
 image-classifier/
+
 ├── assets/ # Trained model weights (.pth)
+
 ├── data/ # (Optional) Local data (from Kaggle)
+
 │ └── raw/
+
 │ └── processed_images/
+
 │ ├── train/
+
 │ │ ├── cataract/
+
 │ │ └── normal/
+
 │ └── test/
+
 │ ├── cataract/
+
 │ └── normal/
+
 ├── deployment/ # FastAPI deployment scripts
-│ ├── main.py # FastAPI app entry point
-│ ├── model.py # Model architecture and loader
-│ ├── utils.py # Image preprocessing functions
+│ 
+  ├── main.py # FastAPI app entry point
+│ 
+  ├── model.py # Model architecture and loader
+│ 
+  ├── utils.py # Image preprocessing functions
+
 ├── notebooks/ # Jupyter Notebooks
-│ ├── 01_exploration.ipynb # Dataset exploration
+│ 
+  ├── 01_exploration.ipynb # Dataset exploration
+  
   ├── 02a-train-iterations.ipynb # exploration and CLAHE/Gamma tests
+  
   └── 02_train_final.ipynb # Final EfficientNet training + evaluation
    
 ├── requirements.txt # Project dependencies
