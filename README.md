@@ -95,7 +95,11 @@ uvicorn deployment.main:app --reload
 2. Open Swagger Docs
 Go to: http://127.0.0.1:8000/docs
 
+Click on "Try it out" tab under the "/predict" API dropdown
+
 Upload image via UI
+
+Click on "Execute"
 
 See prediction + confidence score
 
